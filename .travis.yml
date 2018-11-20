@@ -3,6 +3,13 @@ language: node_js
 node_js:
 - "node"
 
+addons:
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
+
 # Branches to build
 branches:
   only:
