@@ -1,6 +1,6 @@
 {
   "name": "ngx-dropdown-list",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +11,30 @@
     "packagr": "ng-packagr -p ng-package.json"
   },
   "private": false,
+  "author": {
+    "name": "Kuang Cheng",
+    "email": "chengkuang@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "drop-down",
+    "select",
+    "selection",
+    "multi-select",
+    "multi-selection",
+    "multiple selection",
+    "checkbox",
+    "drop",
+    "dropdown"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckyycc/ngx-dropdown-list"
+  },
+  "bugs": {
+    "url": "https://github.com/ckyycc/ngx-dropdown-list/issues"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
     "@angular/cli": "~6.2.1",

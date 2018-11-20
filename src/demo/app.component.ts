@@ -24,10 +24,10 @@ export class AppComponent {
     {id: '600000', value: 600000, text: 600000},
   ];
   measureItems = [
-    {id: 'Max',     value: 'Max',     text: 'Maximum', selected: false},
-    {id: 'Average', value: 'Average', text: 'Average', selected: false},
-    {id: 'Sum',     value: 'Sum',     text: 'Total',   selected: false},
-    {id: 'Last',    value: 'Last',    text: 'Last',    selected: false}
+    {id: 'Max',     value: 'Max',     text: 'Maximum'},
+    {id: 'Average', value: 'Average', text: 'Average'},
+    {id: 'Sum',     value: 'Sum',     text: 'Total'},
+    {id: 'Last',    value: 'Last',    text: 'Last'}
   ];
 
   timezoneNoRegion;
@@ -152,7 +152,7 @@ export class AppComponent {
   ];
   timezone1;
   get selectedMeasures() {
-    const items = this.measureItems.filter(item => item.selected);
+    const items = this.measureItems.filter((item: any) => item.selected);
     return items.length ? JSON.stringify(items.map(item => ({id: item.id, value: item.value, text: item.text}))) : '';
   }
 }
