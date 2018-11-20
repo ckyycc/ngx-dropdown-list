@@ -26,7 +26,21 @@
     "multiple selection",
     "checkbox",
     "drop",
-    "dropdown"
+    "dropdown",
+    "dropdown list",
+    "dropdown-list",
+    "drop-down-list",
+    "select-list",
+    "selection-list",
+    "list",
+    "pull-down",
+    "pulldown",
+    "picklist",
+    "pick-list",
+    "drop menu",
+    "drop-menu",
+    "dropmenu",
+    "drop-down menu"
   ],
   "repository": {
     "type": "git",
