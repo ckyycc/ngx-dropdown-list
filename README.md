@@ -77,18 +77,18 @@ optionItems = [
 /* input date with group info. */
 timezones = [
   {group: 'Africa', items: [
-      {id: '1', value: 'Africa/Abidjan', text: 'Africa - Abidjan (GMT+00:00)', selected: false},
-      {id: '2', value: 'Africa/Accra', text: 'Africa - Accra (GMT+00:00)', selected: false},
-      {id: '3', value: 'Africa/Addis_Ababa', text: 'Africa - Addis Ababa (GMT+03:00)', selected: false},
-      {id: '4', value: 'Africa/Algiers', text: 'Africa - Algiers (GMT+01:00)', selected: false},
-      {id: '5', value: 'Africa/Asmara', text: 'Africa - Asmara (GMT+03:00)', selected: false},
+      {id: '1', value: 'Africa/Abidjan', text: 'Africa - Abidjan'},
+      {id: '2', value: 'Africa/Accra', text: 'Africa - Accra'},
+      {id: '3', value: 'Africa/Addis_Ababa', text: 'Africa - Addis Ababa'},
+      {id: '4', value: 'Africa/Algiers', text: 'Africa - Algiers'},
+      {id: '5', value: 'Africa/Asmara', text: 'Africa - Asmara'},
     ]},
   {group: 'America', items: [
-      {id: '6', value: 'America/Adak', text: 'America - Adak (GMT-10:00)', selected: false},
-      {id: '7', value: 'America/Anchorage', text: 'America - Anchorage (GMT-09:00)', selected: false},
-      {id: '8', value: 'America/Anguilla', text: 'America - Anguilla (GMT-04:00)', selected: false},
-      {id: '9', value: 'America/Antigua', text: 'America - Antigua (GMT-04:00)', selected: false},
-      {id: '10', value: 'America/Araguaina', text: 'America - Araguaina (GMT-03:00)', selected: false},
+      {id: '6', value: 'America/Adak', text: 'America - Adak'},
+      {id: '7', value: 'America/Anchorage', text: 'America - Anchorage'},
+      {id: '8', value: 'America/Anguilla', text: 'America - Anguilla'},
+      {id: '9', value: 'America/Antigua', text: 'America - Antigua'},
+      {id: '10', value: 'America/Araguaina', text: 'America - Araguaina'},
     ]}
   ]
 ```
