@@ -1,0 +1,41 @@
+@import '../utils/util.scss';
+.dropdown {
+  &:focus {
+    outline: 0;
+  }
+  width: 100%;
+  padding: 0;
+  display: none;
+  margin: 0;
+  border: 1px solid $activeBorderColor;
+  border-top: none;
+  border-bottom: none;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 999;
+  .options{
+    width: calc(100% + 2px);
+    left: 0;
+    box-sizing: border-box;
+    background: white;
+    position: absolute;
+    max-height: 228px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid $activeBorderColor;
+    border-top: none;
+    border-bottom-right-radius: $defaultBorderRadius;
+    border-bottom-left-radius: $defaultBorderRadius;
+    margin-left: -1px;
+    margin-right: -1px;
+    padding-right: 5px;
+  }
+  .with-filter {
+    top: 32px;
+  }
+  .no-filter {
+    top: 0;
+  }
+}

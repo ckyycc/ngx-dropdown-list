@@ -1,0 +1,17 @@
+:host {
+  @import './utils/util.scss';
+
+  .ngx-select {
+    border-radius: $defaultBorderRadius;
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    background: white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}

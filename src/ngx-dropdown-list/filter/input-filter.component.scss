@@ -1,0 +1,17 @@
+@import '../utils/util.scss';
+/* filter box */
+.filter-box {
+  width: calc(100% - 10px);
+  height: 28px;
+  border-radius: $defaultBorderRadius;
+  border: 1px solid $defaultBorderColor;
+  margin: 1px 5px 5px 5px;
+  padding-left: 5px;
+  font-size: 12px;
+  box-sizing: border-box;
+  color: $defaultFontColor;
+  &:focus {
+    outline: 0;
+    border-color: $defaultBorderColor;
+  }
+}

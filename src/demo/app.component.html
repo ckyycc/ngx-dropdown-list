@@ -1,0 +1,107 @@
+<div class="demo">
+  <div class="header">
+    <div class="header-content">
+      <span class="header-title">Example of <a class="header-title-link" href="https://www.npmjs.com/package/ngx-dropdown-list" target="_blank">ngx-dropdown-list</a> library</span>
+      <a class="header-github" href="https://github.com/ckyycc/ngx-dropdown-list" target="_blank">View on Github</a>
+    </div>
+    <hr>
+  </div>
+  <div class="sample">
+    <div class="sample-title">
+      Single Selection
+    </div>
+    <div class="sample-demo">
+      <ngx-dropdown-list [items]="maxRowLimitations1"
+                         [multiSelection]="false"
+                         [placeHolder]="'Limit Row Number'"
+                         [(selectedValue)]="maxRowsLimitation1"
+                         [suffixText]="' Rows'"
+                         [filterBox]="false"
+                         [allowClear]="false"
+                         [formatNumber]="true">
+      </ngx-dropdown-list>
+    </div>
+    <div class="sample-result">
+      Limit result to: {{maxRowsLimitation1 ? maxRowsLimitation1 : 'xxx'}} rows
+    </div>
+  </div>
+  <div class="sample">
+    <div class="sample-title">
+      Single Clearable Selection
+    </div>
+    <div class="sample-demo">
+      <ngx-dropdown-list [items]="maxRowLimitations2"
+                         [multiSelection]="false"
+                         [placeHolder]="'Limit Row Number'"
+                         [(selectedValue)]="maxRowsLimitation2"
+                         [suffixText]="' Rows'"
+                         [filterBox]="false"
+                         [formatNumber]="true">
+      </ngx-dropdown-list>
+    </div>
+    <div class="sample-result">
+      Limit result to: {{maxRowsLimitation2 ? maxRowsLimitation2 : 'xxx'}} rows
+    </div>
+  </div>
+  <div class="sample">
+    <div class="sample-title">
+      Single Clearable Selection with Filter
+    </div>
+    <div class="sample-demo">
+      <ngx-dropdown-list [items]="timezonesNoRegion"
+                         [multiSelection]="false"
+                         [placeHolder]="'Selection from Sample Timezones'"
+                         [(selectedValue)]="timezoneNoRegion"
+                         [filterBox]="true">
+      </ngx-dropdown-list>
+    </div>
+    <div class="sample-result">
+      Selected timezone: {{timezoneNoRegion}}
+    </div>
+  </div>
+  <div class="sample">
+    <div class="sample-title">
+      Single Clearable Group Selection with Filter
+    </div>
+    <div class="sample-demo">
+      <ngx-dropdown-list [items]="timezones"
+                         [multiSelection]="false"
+                         [placeHolder]="'Select from Sample Timezones'"
+                         [(selectedValue)]="timezone"
+                         [filterBox]="true">
+      </ngx-dropdown-list>
+    </div>
+    <div class="sample-result">
+      Selected timezone: {{timezone}}
+    </div>
+  </div>
+  <div class="sample">
+    <div class="sample-title">
+      Selection with Selected values
+    </div>
+    <div class="sample-demo">
+      <ngx-dropdown-list [items]="timezones1"
+                         [multiSelection]="false"
+                         [placeHolder]="'Select from Sample Timezones'"
+                         [(selectedValue)]="timezone1"
+                         [filterBox]="true">
+      </ngx-dropdown-list>
+    </div>
+    <div class="sample-result">
+      Selected timezone: {{timezone1}}
+    </div>
+  </div>
+  <div class="sample">
+    <div class="sample-title">
+      Multiple Selection
+    </div>
+    <div class="sample-demo">
+      <ngx-dropdown-list [items]="measureItems" [multiSelection]="true" [placeHolder]="'Measures'"></ngx-dropdown-list>
+    </div>
+    <div class="sample-result">
+      Selected measures: {{selectedMeasures}}
+    </div>
+  </div>
+</div>
+
+

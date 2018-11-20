@@ -1,0 +1,11 @@
+$defaultBorderRadius: 4px;
+$defaultFontColor: #495057;
+$defaultBorderColor: #ccc;
+$activeBorderColor: #66afe9;
+*, *:before, *:after {
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  box-sizing: inherit;
+  background: inherit;
+}

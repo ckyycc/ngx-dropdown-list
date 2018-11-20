@@ -1,0 +1,85 @@
+@import '../utils/util.scss';
+.dropdown-item {
+  background: transparent;
+  display: list-item;
+  list-style: none;
+  position: relative;
+  width: 100%;
+  height: auto;
+  //margin-top: 5px;
+  cursor: pointer;
+  //font-size: 14px;
+  color: $defaultFontColor;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 12px;
+}
+
+/* dropdown group item */
+ /* The container */
+.container-checkbox {
+  @extend .dropdown-item;
+  padding-left: 35px;
+  /* Hide the browser's default checkbox */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    height: 15px;
+    width: 15px;
+    border: 1px solid rgba(0,0,0,.3);
+    background-color: white;
+    border-radius: $defaultBorderRadius;
+    /* Create the checkmark/indicator (hidden when not checked) */
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 5px;
+      top: 2px;
+      width: 4px;
+      height: 7px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+  /* On mouse-over, add a grey background color */
+  &:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  /* When the checkbox is checked, add a blue background */
+  input:checked ~ .checkmark {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+    /* Show the checkmark when checked */
+    &:after {
+      display: block;
+    }
+  }
+  &:hover {
+    color: $activeBorderColor;
+  }
+}
+.container-selection {
+  @extend .dropdown-item;
+  padding-left: 12px;
+  &:hover {
+    color:  white;
+    background: cornflowerblue;
+  }
+}
+.container-selection-selected {
+  @extend .container-selection;
+  color:  white;
+  background: cornflowerblue;
+}

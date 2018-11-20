@@ -1,0 +1,9 @@
+@import '../utils/util.scss';
+@import '../item/item.component.scss';
+
+.dropdown-item-group {
+  font-weight: bold;
+  &:hover{
+    cursor: default;
+  }
+}
