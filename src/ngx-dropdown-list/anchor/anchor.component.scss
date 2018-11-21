@@ -52,7 +52,7 @@ $placeHolderColor: #999;
   filter: opacity(50%);
   &:after {
     font-size: 12px;
-    content: '⏷';
+    content: '\0023F7'; //'⏷'
     right: 10px;
     @extend .vertical-center;
     padding-bottom: 3px;
@@ -66,7 +66,7 @@ $placeHolderColor: #999;
   border-color: $activeBorderColor;
   &:after {
     font-size: 12px;
-    content: '⏶';
+    content: "\0023F6"; //'⏶'
     right: 10px;
     @extend .vertical-center;
     padding-bottom: 3px;
@@ -80,7 +80,7 @@ $placeHolderColor: #999;
   }
   &:after {
     font-size: 12px;
-    content: '⏷';
+    content: '\0023F7'; //'⏷'
     right: 10px;
     @extend .vertical-center;
     padding-bottom: 3px;
