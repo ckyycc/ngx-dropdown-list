@@ -1,4 +1,5 @@
 @import '../utils/util.scss';
+
 .dropdown-item {
   background: transparent;
   display: list-item;
@@ -74,8 +75,8 @@
   @extend .dropdown-item;
   padding-left: 12px;
   &:hover {
-    color:  white;
-    background: cornflowerblue;
+    color: $defaultFontColor;
+    background: lightcyan ;
   }
 }
 .container-selection-selected {
