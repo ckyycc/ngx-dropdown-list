@@ -15,23 +15,19 @@ Check out the [DEMO](https://ckyycc.github.io/ngx-dropdown-list/) for more infor
 
 ### Importing The 'ngx-dropdown-list' Module
 ```TypeScript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { DropdownListModule } from '../ngx-dropdown-list';
+import { DropdownListModule } from 'ngx-dropdown-list';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    ...
   ],
   imports: [
-    BrowserModule,
     DropdownListModule,
+    ...
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [...]
 })
 export class AppModule { }
 
