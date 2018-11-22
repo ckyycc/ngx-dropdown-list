@@ -17,7 +17,6 @@ Check out the [DEMO](https://ckyycc.github.io/ngx-dropdown-list/) for more infor
 ```TypeScript
 import { DropdownListModule } from 'ngx-dropdown-list';
 
-
 @NgModule({
   declarations: [
     ...
@@ -29,6 +28,7 @@ import { DropdownListModule } from 'ngx-dropdown-list';
   providers: [],
   bootstrap: [...]
 })
+
 export class AppModule { }
 
 ```
