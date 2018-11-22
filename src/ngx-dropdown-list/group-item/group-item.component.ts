@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SelectionGroupItems} from '../types/selection-group-items.types';
+import {SelectionGroupItems} from '../types';
 
 @Component({
   selector: 'group-item',
