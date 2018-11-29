@@ -89,6 +89,7 @@ timezones = [
   ]
 ```
 
-## License
-
-[MIT](/LICENSE)
+Todo
+----
+* Support Angular 7
+* ...
