@@ -93,3 +93,6 @@ Todo
 ----
 * Support Angular 7
 * ...
+
+## License
+ [MIT](/LICENSE)
