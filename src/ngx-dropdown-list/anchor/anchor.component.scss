@@ -51,8 +51,8 @@ $placeHolderColor: #999;
   -webkit-filter: opacity(50%);
   filter: opacity(50%);
   &:after {
-    font-size: 12px;
-    content: '\0023F7'; //'⏷'
+    font-size: 9px;
+    content: '\0025BC'; //-- middle size doesn't work on macOs '\0023F7'; //'⏷'
     right: 10px;
     @extend .vertical-center;
     padding-bottom: 3px;
@@ -65,8 +65,8 @@ $placeHolderColor: #999;
   border-bottom-left-radius: 0;
   border-color: $activeBorderColor;
   &:after {
-    font-size: 12px;
-    content: "\0023F6"; //'⏶'
+    font-size: 9px;
+    content: '\0025B2'; //'▲';  -- middle size doesn't work on macOs '⏶'; //"\0023F6";
     right: 10px;
     @extend .vertical-center;
     padding-bottom: 3px;
@@ -79,8 +79,8 @@ $placeHolderColor: #999;
     @extend .hover-box;
   }
   &:after {
-    font-size: 12px;
-    content: '\0023F7'; //'⏷'
+    font-size: 9px;
+    content: '\0025BC'; //'▼'; -- middle size doesn't work on macOs '⏷'; //'\0023F7';
     right: 10px;
     @extend .vertical-center;
     padding-bottom: 3px;
