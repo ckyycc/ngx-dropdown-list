@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/ngx-dropdown-list.svg?style=flat-square)](https://www.npmjs.com/package/ngx-dropdown-list) [![npm downloads](https://img.shields.io/npm/dm/ngx-dropdown-list.svg)](https://www.npmjs.com/package/ngx-dropdown-list) [![Travis](https://img.shields.io/travis/ckyycc/ngx-dropdown-list.svg?style=flat-square)](https://travis-ci.org/ckyycc/ngx-dropdown-list) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ckyycc/ngx-dropdown-list/blob/master/LICENSE)
 
-An Angular 7 module for selecting data from drop-down list which supports multi-selection and filter.
+An Angular 13 module for selecting data from drop-down list which supports multi-selection and filter.
 
 ## Installation
 ```bash
@@ -91,7 +91,7 @@ timezones = [
 
 Todo
 ----
-* ~~Support Angular 7~~
+* ~~Support Angular 13~~
 * ...
 
 ## License

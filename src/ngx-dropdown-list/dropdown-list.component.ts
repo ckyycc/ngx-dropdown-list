@@ -173,7 +173,7 @@ export class DropdownListComponent {
 
     // scrolling to the selected item
     if (this._selectedElement) {
-      this._selectedElement.scrollIntoView({ behavior: 'instant', block: 'center' });
+      this._selectedElement.scrollIntoView({ behavior: 'auto', block: 'center' });
     }
 
     // setting the focus
