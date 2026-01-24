@@ -1,6 +1,6 @@
 {
   "name": "ngx-dropdown-list",
-  "version": "21.0.0",
+  "version": "21.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -78,6 +78,7 @@
     "@angular/common": "^21.1.1",
     "@angular/core": "^21.1.1",
     "@angular/forms": "^21.1.1",
-    "@angular/platform-browser": "^21.1.1"
+    "@angular/platform-browser": "^21.1.1",
+    "zone.js": "^0.16.0"
   }
 }

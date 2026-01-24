@@ -20,6 +20,7 @@
             "outputPath": "dist/ngx-dropdown-list",
             "index": "src/demo/index.html",
             "browser": "src/demo/main.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/assets"],
             "styles": [],
@@ -57,6 +58,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [],

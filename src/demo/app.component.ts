@@ -1,16 +1,16 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component } from '@angular/core';
 import { DropdownListComponent } from '../ngx-dropdown-list';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
-  imports: [DropdownListComponent]
+  imports: [DropdownListComponent],
+  standalone: true
 })
 export class AppComponent {
-  maxRowsLimitation1 = signal<any>(undefined);
-  maxRowsLimitation2 = signal<any>(undefined);
+  maxRowsLimitation1;
+  maxRowsLimitation2;
   maxRowLimitations1 = [
     {id: '100000', value: 100000, text: 100000},
     {id: '200000', value: 200000, text: 200000},
@@ -33,7 +33,7 @@ export class AppComponent {
     {id: 'Last',    value: 'Last',    text: 'Last'}
   ];
 
-  timezoneNoRegion = signal<any>(undefined);
+  timezoneNoRegion;
   timezonesNoRegion = [
     {id: 'America/Aruba', value: 'America/Aruba', text: 'America - Aruba (GMT-04:00)', selected: false},
     {id: 'America/Asuncion', value: 'America/Asuncion', text: 'America - Asuncion (GMT-03:00)', selected: false},
@@ -121,7 +121,7 @@ export class AppComponent {
         {id: 'US/East-Indiana', value: 'US/East-Indiana', text: 'US - East-Indiana (GMT-05:00)', selected: false},
       ]}
   ];
-  timezone = signal<any>(undefined);
+  timezone;
 
   timezones1 = [
     {group: 'Africa', items: [
@@ -153,7 +153,8 @@ export class AppComponent {
         {id: 'US/East-Indiana1', value: 'US/East-Indiana', text: 'US - East-Indiana (GMT-05:00)', selected: false},
     ]}
   ];
-  timezone1 = signal<any>(undefined);
+  timezone1;
+
   get selectedMeasures() {
     const items = this.measureItems.filter((item: any) => item.selected);
     return items.length ? JSON.stringify(items.map(item => ({id: item.id, value: item.value, text: item.text}))) : '';
