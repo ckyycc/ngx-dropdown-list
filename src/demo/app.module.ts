@@ -1,14 +1,2 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [],
-  imports: [
-    AppComponent,
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+// This file is no longer needed when using bootstrapApplication with standalone components
+// The AppComponent is now bootstrapped directly in main.ts

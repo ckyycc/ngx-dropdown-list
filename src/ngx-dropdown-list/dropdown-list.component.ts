@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Output, ViewChild, signal, computed, input} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {clearAllSelection, getFirstSelectedItem, stopPropagationAndDefault} from './utils/util';
 import { AnchorComponent } from './anchor/anchor.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
@@ -8,30 +8,28 @@ import { DropdownComponent } from './dropdown/dropdown.component';
   template: `
     <span class="ngx-select">
         <anchor (anchorClick)="onAnchorClick($event)" (clearanceClick)="onClearanceClick($event)"
-                [checkbox]="multiSelection()"
-                [formatNumber]="formatNumber()"
-                [suffixText]="suffixText()"
-                [placeHolder]="placeHolder()"
-                [allowClear]="allowClear()"
-                [openStatus]="dropdownVisibility()"
-                [selectedText]="selectedText()"
-                [disabled]="disabled()">
+                [checkbox]="multiSelection"
+                [formatNumber]="formatNumber"
+                [suffixText]="suffixText"
+                [placeHolder]="placeHolder"
+                [allowClear]="allowClear"
+                [openStatus]="dropdownVisibility"
+                [selectedText]="selectedText"
+                [disabled]="disabled">
         </anchor>
         <dropdown #dropdown (dropdownBlur) = "onItemsBlur()" (selectionChange)="onSelectionChange($event)"
-                [items]="items()"
-                [checkbox]="multiSelection()"
-                [filterBox]="filterBox()"
-                [formatNumber]="formatNumber()"
-                [suffixText]="suffixText()"
-                [selectedValue]="selectedValue()"
-                (selectedValueChange)="onSelectedValueChange($event)"
+                [items]="items"
+                [checkbox]="multiSelection"
+                [filterBox]="filterBox"
+                [formatNumber]="formatNumber"
+                [suffixText]="suffixText"
+                [(selectedValue)]="selectedValue"
                 (itemClick) = "onItemClick()"
-                [disabled]="disabled()">
+                [disabled]="disabled">
         </dropdown>
     </span>
   `,
   styleUrls: ['./dropdown-list.component.scss'],
-  standalone: true,
   imports:[AnchorComponent, DropdownComponent]
 })
 
@@ -41,47 +39,39 @@ export class DropdownListComponent {
   /**
    * bind to [placeHolder] for displaying the place holder string of the anchor.
    */
-  placeHolder = input<string>('');
-
+  @Input() placeHolder: string;
   /**
    * bind to [items] for the options/groups in the dropdown
    */
-  items = input<any[]>([]);
-
+  @Input() items: any[];
   /**
    * bind to [multiSelection], the flag for multi-select (checkbox) mode.
    */
-  multiSelection = input<boolean>(false);
-
+  @Input() multiSelection = false;
   /**
    * bind to [selectedValue] for the value of the selected option from dropdown
    */
-  selectedValue = input<any>(undefined);
-
+  @Input() selectedValue: any;
   /**
    * bind to [filterBox] for displaying the filter input text box
    */
-  filterBox = input<boolean>(false);
-
+  @Input() filterBox = false;
   /**
    * bind to [suffixText] for displaying the suffix of the selected text of anchor
    */
-  suffixText = input<string>('');
-
+  @Input() suffixText: string;
   /**
    * bind to [disabled] for disabling the dropdown
    */
-  disabled = input<boolean>(false);
-
+  @Input() disabled: boolean;
   /**
    * bind to [allowClear] for enabling the clearance (clearance is not avaiable when checkbox is enabled)
    */
-  allowClear = input<boolean>(true);
-
+  @Input() allowClear = true;
   /**
    * bind to [formatNumber] for show formatted number text
    */
-  formatNumber = input<boolean>(false);
+  @Input() formatNumber = false;
   /**
    * for 2-way binding of [selectedValue], using async event to
    * prevent "ExpressionChangedAfterItHasBeenCheckedError".
@@ -96,36 +86,22 @@ export class DropdownListComponent {
   /**
    * visibility flag of drop down
    */
-  dropdownVisibility = signal<boolean>(false);
-
-  private _selectionChangeTracker = signal<number>(0);
+  dropdownVisibility = false;
 
   /**
-   * current selected text - using computed for better performance
+   * current selected text
    */
-  selectedText = computed(() => {
-    this._selectionChangeTracker();
-    
-    if (!this.multiSelection()) {
-      const selectedItem = getFirstSelectedItem(this.items());
+  get selectedText(): any {
+    if (!this.multiSelection) {
+      const selectedItem = getFirstSelectedItem(this.items);
       return selectedItem ? selectedItem.text : undefined;
     }
-    return undefined;
-  });
-
-  /**
-   * triggered with (selectedValueChange) event from dropdown component
-   */
-  onSelectedValueChange(event) {
-    this._selectionChangeTracker.update(v => v + 1);
-    this.selectedValueChange.emit(event);
   }
 
   /**
    * triggered with (selectionChange) event, emits (selectedValueChange) and (selectionChange)
    */
   onSelectionChange(event) {
-    this._selectionChangeTracker.update(v => v + 1);
     this.selectedValueChange.emit(event);
     this.selectionChange.emit(event);
   }
@@ -134,7 +110,7 @@ export class DropdownListComponent {
    * triggered with (anchorClick) event, controlling the "open" and "close" of the dropdown
    */
   onAnchorClick(event: Event): void {
-    if (this.disabled()) {
+    if (this.disabled) {
       stopPropagationAndDefault(event);
       return;
     }
@@ -150,7 +126,7 @@ export class DropdownListComponent {
    * triggered with (itemClick) event, closes the dropdown in non-checkbox mode
    */
   onItemClick(): void {
-    if (!this.multiSelection()) {
+    if (!this.multiSelection) {
       this._hideItemList();
     }
   }
@@ -160,11 +136,11 @@ export class DropdownListComponent {
    * and emits (selectedValueChange) and (selectionChange) event for empty value
    */
   onClearanceClick(event: Event): void {
-    if (!this.multiSelection()) {
-      this._selectionChangeTracker.update(v => v + 1);
+    if (!this.multiSelection) {
+      this.selectedValue = void 0;
       this.selectedValueChange.emit(undefined);
       this.selectionChange.emit(undefined);
-      clearAllSelection(this.items());
+      clearAllSelection(this.items);
     }
     stopPropagationAndDefault(event);
   }
@@ -185,7 +161,7 @@ export class DropdownListComponent {
     // hide the dropdown element (has some problem for using CSS directly, using this as a workaround)
     this._dropdownElement.classList.remove('visible');
     this._dropdownElement.style.display = 'none';
-    this.dropdownVisibility.set(false);
+    this.dropdownVisibility = false;
   }
 
   /**
@@ -196,7 +172,7 @@ export class DropdownListComponent {
     this._dropdownElement.classList.add('visible');
     this._dropdownElement.style.display = 'block';
 
-    this.dropdownVisibility.set(true);
+    this.dropdownVisibility = true;
 
     // scrolling to the selected item
     if (this._selectedElement) {
@@ -204,7 +180,7 @@ export class DropdownListComponent {
     }
 
     // setting the focus
-    if (this.filterBox() && !this.multiSelection()) {
+    if (this.filterBox && !this.multiSelection) {
       this._filterInputElement.focus();
     } else {
       this._dropdownElement.focus();
@@ -215,7 +191,7 @@ export class DropdownListComponent {
    * visibility status of dropdown
    */
   private _isSelectionOpen(): boolean {
-    return this.dropdownVisibility();
+    return this.dropdownVisibility;
   }
 
   /**
@@ -237,7 +213,7 @@ export class DropdownListComponent {
    * get the HTMLElement of selected item, for doing (scrollIntoView) scrolling to the selected item
    */
   private get _selectedElement(): HTMLElement {
-    const selectedItem = getFirstSelectedItem(this.items());
+    const selectedItem = getFirstSelectedItem(this.items);
     return selectedItem ? document.getElementById(selectedItem.id) as HTMLElement : undefined;
   }
 }
