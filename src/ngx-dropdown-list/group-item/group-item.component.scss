@@ -1,5 +1,5 @@
-@import '../utils/util.scss';
-@import '../item/item.component.scss';
+@use '../utils/util.scss' as *;
+@use '../item/item.component.scss' as *;
 
 .dropdown-item-group {
   font-weight: bold;

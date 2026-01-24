@@ -1,29 +1,35 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnChanges, Output, SimpleChanges, ViewChild, signal, computed, input} from '@angular/core';
 import {clearAllSelection, getFirstSelectedItem, hasGroup, stopPropagationAndDefault} from '../utils/util';
+import { CommonModule } from '@angular/common';
+import { ItemComponent } from '../item/item.component';
+import { GroupItemComponent } from '../group-item/group-item.component';
+import { InputFilterComponent } from '../filter/input-filter.component';
 
 @Component({
   selector: 'dropdown',
   template: `
-    <span #dropdown class="dropdown" tabindex="3" (mousedown)="onItemsClick($event)" (blur)="onItemsBlur($event)" *ngIf="!disabled" >
-      <input-filter #filterInput tabindex="4" *ngIf="filterBox && !checkbox" [(filterValue)]="filterValue" (inputFilterBlur)="onFilterTextBlur($event)"></input-filter>
-      <span #selectionOptions [ngClass]="optionsClass">
-        <ng-container *ngFor="let item of itemsValues" >
+    <span #dropdown class="dropdown" tabindex="3" (mousedown)="onItemsClick($event)" (blur)="onItemsBlur($event)" *ngIf="!disabled()" >
+      <input-filter #filterInput tabindex="4" *ngIf="filterBox() && !checkbox()" [filterValue]="filterValue()" (filterValueChange)="onFilterValueChange($event)" (inputFilterBlur)="onFilterTextBlur($event)"></input-filter>
+      <span #selectionOptions [ngClass]="optionsClass()">
+        <ng-container *ngFor="let item of itemsValues()" >
           <ng-container *ngIf="item && item.group">
             <group-item [item]="item"></group-item>
             <item *ngFor="let subItem of item.items" (itemClick)="onItemClick(subItem)" (checkStatusChange)="toggleSelection(subItem)"
-                  [item]="subItem" [checkbox]="checkbox" [formatNumber]="formatNumber" [suffixText]="suffixText">
+                  [item]="subItem" [checkbox]="checkbox()" [formatNumber]="formatNumber()" [suffixText]="suffixText()">
             </item>
           </ng-container>
           <ng-container *ngIf="item && !item.group">
             <item (itemClick)="onItemClick(item)" (checkStatusChange)="toggleSelection(item)"
-                  [item]="item" [checkbox]="checkbox" [formatNumber]="formatNumber" [suffixText]="suffixText">
+                  [item]="item" [checkbox]="checkbox()" [formatNumber]="formatNumber()" [suffixText]="suffixText()">
             </item>
           </ng-container>
         </ng-container>
       </span>
     </span>
   `,
-  styleUrls: ['./dropdown.component.scss']
+  standalone: true,
+  styleUrls: ['./dropdown.component.scss'],
+  imports: [ CommonModule, InputFilterComponent, ItemComponent, GroupItemComponent ]
 })
 
 export class DropdownComponent implements OnChanges {
@@ -38,39 +44,47 @@ export class DropdownComponent implements OnChanges {
   /**
    * bind to [placeHolder] for displaying the place holder string of the anchor.
    */
-  @Input() placeHolder: string;
+  placeHolder = input<string>('');
+
   /**
    * bind to [items] for the options/groups in the dropdown
    */
-  @Input() items: any[];
+  items = input<any[]>([]);
+
   /**
    * bind to [checkbox], the flag for multi-select (checkbox) mode.
    */
-  @Input() checkbox = false;
+  checkbox = input<boolean>(false);
+
   /**
    * bind to [selectedValue] for the value of the selected option from dropdown
    */
-  @Input() selectedValue: any;
+  selectedValue = input<any>(undefined);
+
   /**
    * bind to [filterBox] for displaying the filter input text box
    */
-  @Input() filterBox = false;
+  filterBox = input<boolean>(false);
+
   /**
    * bind to [suffixText] for displaying the suffix of the selected text of anchor
    */
-  @Input() suffixText: string;
+  suffixText = input<string>('');
+
   /**
    * bind to [disabled] for disabling the dropdown
    */
-  @Input() disabled: boolean;
+  disabled = input<boolean>(false);
+
   /**
    * bind to [allowClear] for enabling the clearance (clearance is not avaiable when checkbox is enabled)
    */
-  @Input() allowClear = true;
+  allowClear = input<boolean>(true);
+
   /**
    * bind to [formatNumber] for show formatted number text
    */
-  @Input() formatNumber = false;
+  formatNumber = input<boolean>(false);
   /**
    * for 2-way binding of [selectedValue]
    */
@@ -90,15 +104,15 @@ export class DropdownComponent implements OnChanges {
   /**
    * filter value
    */
-  filterValue: string;
+  filterValue = signal<string>('');
   /**
    * flag of clicking dropdown. It's to prevent (blur) of dropdown from happening in checkbox mode.
    */
   private _clickedItems = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.items) {
-      this._checkSelectionChange(changes.items.previousValue, changes.items.currentValue);
+    if (changes['items']) {
+      this._checkSelectionChange(changes['items'].previousValue, changes['items'].currentValue);
     }
   }
 
@@ -111,7 +125,7 @@ export class DropdownComponent implements OnChanges {
       return;
     }
     // should ignore clicking on filter
-    if (this.checkbox && event.target.type !== 'text') {
+    if (this.checkbox() && event.target.type !== 'text') {
       this._clickedItems = true;
     }
   }
@@ -120,14 +134,19 @@ export class DropdownComponent implements OnChanges {
    * triggered when clicking the item
    */
   onItemClick(currentItem): void {
-    if (!this.checkbox) {
-      this.selectedValue = this._getItemValue(currentItem); // currentItem.value != null ? currentItem.value : currentItem.text;
-      clearAllSelection(this.items);
-      // set the selection of current one
+    if (!this.checkbox()) {
+      clearAllSelection(this.items());
       currentItem.selected = true;
       this.itemClick.emit(currentItem);
-      this._onSelectionChange(this.selectedValue);
+      this._onSelectionChange(this._getItemValue(currentItem));
     }
+  }
+
+  /**
+   * triggered when filter value changes
+   */
+  onFilterValueChange(value: string): void {
+    this.filterValue.set(value);
   }
 
   /**
@@ -141,7 +160,7 @@ export class DropdownComponent implements OnChanges {
    * triggers with (blur) event of dropdown
    */
   onItemsBlur(event): void {
-    if (this.checkbox) {
+    if (this.checkbox()) {
       if (this._clickedItems) {
         // in checkbox mode, this blur event will be ignored when clicking the dropdown (check the checkbox)
         event.target.focus();
@@ -161,48 +180,50 @@ export class DropdownComponent implements OnChanges {
   }
 
   /**
-   * items values list after applying the filter
+   * items values list after applying the filter - using computed for better performance
    */
-  get itemsValues(): any[] {
+  itemsValues = computed(() => {
     let filter;
-    if (this.filterValue) {
-      filter = this.filterValue.toUpperCase();
+    const filterValue = this.filterValue();
+    if (filterValue) {
+      filter = filterValue.toUpperCase();
     }
 
+    const items = this.items();
     if (filter == null) {
-      return this.items;
+      return items;
     }
-    if (!this.items || this.items.length === 0) {
+    if (!items || items.length === 0) {
       return [];
     }
-    if (hasGroup(this.items)) {
-      const items = [];
-      this.items.forEach(groupItem => {
+    if (hasGroup(items)) {
+      const filteredItems = [];
+      items.forEach(groupItem => {
         if (groupItem.group != null && groupItem.group.toString().toUpperCase().includes(filter)) {
           // if groupItem contains the filters, the groupItem needs to be displayed as well
-          items.push(groupItem);
+          filteredItems.push(groupItem);
         } else {
-          const filteredItems = groupItem.items.filter(item => item.text != null && item.text.toString().toUpperCase().includes(filter));
-          if (filteredItems && filteredItems.length > 0) {
-            items.push({group: groupItem.group, items: filteredItems});
+          const subItems = groupItem.items.filter(item => item.text != null && item.text.toString().toUpperCase().includes(filter));
+          if (subItems && subItems.length > 0) {
+            filteredItems.push({group: groupItem.group, items: subItems});
           }
         }
       });
-      return items;
+      return filteredItems;
     } else {
-      return this.items.filter(item => (item.text != null && item.text.toString().toUpperCase().includes(filter)));
+      return items.filter(item => (item.text != null && item.text.toString().toUpperCase().includes(filter)));
     }
-  }
+  });
   /**
-   * options CSS class
+   * options CSS class - using computed for better performance
    */
-  get optionsClass(): string {
-    if (this.filterBox && !this.checkbox) {
+  optionsClass = computed(() => {
+    if (this.filterBox() && !this.checkbox()) {
       return 'options with-filter';
     } else {
       return 'options no-filter';
     }
-  }
+  });
 
   /**
    * get item value. Return text if value is not available
@@ -227,7 +248,7 @@ export class DropdownComponent implements OnChanges {
     const lastSelectedItem = getFirstSelectedItem(previousValue);
     const curSelectedItemId = curSelectedItem ? curSelectedItem.id : undefined;
     const lastSelectedItemId = lastSelectedItem ? lastSelectedItem.id : undefined;
-    if (curSelectedItemId !== lastSelectedItemId && !this.checkbox) {
+    if (curSelectedItemId !== lastSelectedItemId && !this.checkbox()) {
       this._onSelectionChange(this._getItemValue(curSelectedItem));
     }
   }
