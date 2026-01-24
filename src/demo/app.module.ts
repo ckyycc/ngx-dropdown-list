@@ -1,15 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DropdownListModule } from '../ngx-dropdown-list';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [],
   imports: [
-    BrowserModule,
-    DropdownListModule,
+    AppComponent,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

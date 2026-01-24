@@ -1,4 +1,4 @@
-@import '../utils/util.scss';
+@use '../utils/util.scss' as *;
 
 .dropdown-item {
   background: transparent;

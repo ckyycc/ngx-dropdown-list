@@ -1,6 +1,6 @@
-:host {
-  @import './utils/util.scss';
+@use './utils/util.scss' as *;
 
+:host {
   .ngx-select {
     border-radius: $defaultBorderRadius;
     font-size: 14px;

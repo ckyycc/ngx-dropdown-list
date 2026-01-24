@@ -14,7 +14,8 @@
       <ngx-dropdown-list [items]="maxRowLimitations1"
                          [multiSelection]="false"
                          [placeHolder]="'Limit Row Number'"
-                         [(selectedValue)]="maxRowsLimitation1"
+                         [selectedValue]="maxRowsLimitation1()"
+                         (selectedValueChange)="maxRowsLimitation1.set($event)"
                          [suffixText]="' Rows'"
                          [filterBox]="false"
                          [allowClear]="false"
@@ -22,7 +23,7 @@
       </ngx-dropdown-list>
     </div>
     <div class="sample-result">
-      Limit result to: {{maxRowsLimitation1 ? maxRowsLimitation1 : 'xxx'}} rows
+      Limit result to: {{maxRowsLimitation1() ? maxRowsLimitation1() : 'xxx'}} rows
     </div>
   </div>
   <div class="sample">
@@ -33,14 +34,15 @@
       <ngx-dropdown-list [items]="maxRowLimitations2"
                          [multiSelection]="false"
                          [placeHolder]="'Limit Row Number'"
-                         [(selectedValue)]="maxRowsLimitation2"
+                         [selectedValue]="maxRowsLimitation2()"
+                         (selectedValueChange)="maxRowsLimitation2.set($event)"
                          [suffixText]="' Rows'"
                          [filterBox]="false"
                          [formatNumber]="true">
       </ngx-dropdown-list>
     </div>
     <div class="sample-result">
-      Limit result to: {{maxRowsLimitation2 ? maxRowsLimitation2 : 'xxx'}} rows
+      Limit result to: {{maxRowsLimitation2() ? maxRowsLimitation2() : 'xxx'}} rows
     </div>
   </div>
   <div class="sample">
@@ -51,12 +53,13 @@
       <ngx-dropdown-list [items]="timezonesNoRegion"
                          [multiSelection]="false"
                          [placeHolder]="'Selection from Sample Timezones'"
-                         [(selectedValue)]="timezoneNoRegion"
+                         [selectedValue]="timezoneNoRegion()"
+                         (selectedValueChange)="timezoneNoRegion.set($event)"
                          [filterBox]="true">
       </ngx-dropdown-list>
     </div>
     <div class="sample-result">
-      Selected timezone: {{timezoneNoRegion}}
+      Selected timezone: {{timezoneNoRegion()}}
     </div>
   </div>
   <div class="sample">
@@ -67,12 +70,13 @@
       <ngx-dropdown-list [items]="timezones"
                          [multiSelection]="false"
                          [placeHolder]="'Select from Sample Timezones'"
-                         [(selectedValue)]="timezone"
+                         [selectedValue]="timezone()"
+                         (selectedValueChange)="timezone.set($event)"
                          [filterBox]="true">
       </ngx-dropdown-list>
     </div>
     <div class="sample-result">
-      Selected timezone: {{timezone}}
+      Selected timezone: {{timezone()}}
     </div>
   </div>
   <div class="sample">
@@ -83,12 +87,13 @@
       <ngx-dropdown-list [items]="timezones1"
                          [multiSelection]="false"
                          [placeHolder]="'Select from Sample Timezones'"
-                         [(selectedValue)]="timezone1"
+                         [selectedValue]="timezone1()"
+                         (selectedValueChange)="timezone1.set($event)"
                          [filterBox]="true">
       </ngx-dropdown-list>
     </div>
     <div class="sample-result">
-      Selected timezone: {{timezone1}}
+      Selected timezone: {{timezone1()}}
     </div>
   </div>
   <div class="sample">
@@ -103,5 +108,3 @@
     </div>
   </div>
 </div>
-
-
