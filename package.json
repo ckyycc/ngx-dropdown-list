@@ -50,14 +50,13 @@
     "url": "https://github.com/ckyycc/ngx-dropdown-list/issues"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^21.1.1",
+    "@angular/build": "^21.1.1",
     "@angular/cli": "^21.1.1",
     "@angular/common": "^21.1.1",
     "@angular/compiler": "^21.1.1",
     "@angular/compiler-cli": "^21.1.1",
     "@angular/core": "^21.1.1",
     "@angular/forms": "^21.1.1",
-    "@angular/language-service": "^21.1.1",
     "@angular/platform-browser": "^21.1.1",
     "@angular/platform-browser-dynamic": "^21.1.1",
     "@types/jasmine": "~5.1.4",
